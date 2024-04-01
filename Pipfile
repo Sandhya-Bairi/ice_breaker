@@ -10,6 +10,7 @@ python-dotenv = "*"
 langchain-openai = "*"
 langchainhub = "*"
 google-search-results = "*"
+tweepy = "*"
 
 [dev-packages]
 
