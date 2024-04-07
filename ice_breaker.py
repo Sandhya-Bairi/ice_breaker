@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,12 +11,12 @@ from third_parties.linkedin import scrape_linkedin_profile
 from agents.linkedin_lookup_agent import lookup as linkedin_lookup_agent
 from agents.twitter_lookup_agent import lookup as twitter_lookup_agent
 from third_parties.twitter_with_stubs import scrape_user_tweets
-from output_parsers import person_intel_parser
+from output_parsers import person_intel_parser, PersonIntel
 
 name = "Sandhya Rani Bairi"
 
 
-def ice_break(name: str) -> str:
+def ice_break(name: str) -> Tuple[PersonIntel, str]:
     linkedin_profile_url = linkedin_lookup_agent(name=name)
     linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_profile_url)
 
@@ -44,13 +46,13 @@ def ice_break(name: str) -> str:
     result = chain.run(linkedin_information=linkedin_data, twitter_information=tweets)
 
     print(result)
-    return person_intel_parser.parse(result)
+    return person_intel_parser.parse(result), linkedin_data.get("profile_pic_url")
 
 
 if __name__ == "__main__":
 
     print("Hello LangChain!")
 
-    result = ice_break(name="Sandhya Rani Bairi")
+    result = ice_break(name="Vamshadhara Bairi")
 
     # print(chain.invoke(input={"linkedin_information": linkedin_data, "twitter_information":tweets}))

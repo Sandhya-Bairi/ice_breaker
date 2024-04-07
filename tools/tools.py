@@ -10,7 +10,8 @@ class CustomSerpAPIWrapper(SerpAPIWrapper):
     def _process_response(res: dict) -> str:
         """Process response from SerpAPI."""
         if "error" in res.keys():
-            raise ValueError(f"Got error from SerpAPI: {res['error']}")
+            #raise ValueError(f"Got error from SerpAPI: {res['error']}")
+            return None
         if "answer_box" in res.keys() and "answer" in res["answer_box"].keys():
             toret = res["answer_box"]["answer"]
         elif "answer_box" in res.keys() and "snippet" in res["answer_box"].keys():
