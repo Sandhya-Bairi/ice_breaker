@@ -53,6 +53,6 @@ if __name__ == "__main__":
 
     print("Hello LangChain!")
 
-    result = ice_break(name="Vamshadhara Bairi")
+    result = ice_break(name="Eden Marco")
 
     # print(chain.invoke(input={"linkedin_information": linkedin_data, "twitter_information":tweets}))
